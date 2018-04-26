@@ -1,4 +1,4 @@
-![Image](/image/banner.png)
+This is just a frok of ![Image](/image/banner.png)
 
 # Matisse
 [![Build Status](https://travis-ci.org/zhihu/Matisse.svg)](https://travis-ci.org/zhihu/Matisse)  
