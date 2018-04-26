@@ -23,6 +23,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.ListPopupWindow;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
@@ -31,7 +32,7 @@ import com.zhihu.matisse.R;
 import com.zhihu.matisse.internal.entity.Album;
 import com.zhihu.matisse.internal.utils.Platform;
 
-public class AlbumsSpinner {
+public class AlbumsSpinner extends View {
 
     private static final int MAX_SHOWN_COUNT = 6;
     private CursorAdapter mAdapter;
@@ -40,13 +41,11 @@ public class AlbumsSpinner {
     private AdapterView.OnItemSelectedListener mOnItemSelectedListener;
 
     public AlbumsSpinner(@NonNull Context context) {
+        super(context);
         mListPopupWindow = new ListPopupWindow(context, null, R.attr.listPopupWindowStyle);
         mListPopupWindow.setModal(true);
-        float density = context.getResources().getDisplayMetrics().density;
-        mListPopupWindow.setContentWidth((int) (216 * density));
-        mListPopupWindow.setHorizontalOffset((int) (16 * density));
-        mListPopupWindow.setVerticalOffset((int) (-48 * density));
-
+        mListPopupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        mListPopupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         mListPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -112,10 +111,6 @@ public class AlbumsSpinner {
 
             @Override
             public void onClick(View v) {
-                int itemHeight = v.getResources().getDimensionPixelSize(R.dimen.album_item_height);
-                mListPopupWindow.setHeight(
-                        mAdapter.getCount() > MAX_SHOWN_COUNT ? itemHeight * MAX_SHOWN_COUNT
-                                : itemHeight * mAdapter.getCount());
                 mListPopupWindow.show();
             }
         });
