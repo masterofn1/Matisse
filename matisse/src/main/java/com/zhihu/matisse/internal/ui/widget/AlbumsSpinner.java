@@ -34,7 +34,7 @@ import com.zhihu.matisse.internal.utils.Platform;
 
 public class AlbumsSpinner extends View {
 
-    private static final int MAX_SHOWN_COUNT = 6;
+    private static final int MAX_SHOWN_COUNT = 5;
     private CursorAdapter mAdapter;
     private TextView mSelected;
     private ListPopupWindow mListPopupWindow;
@@ -44,7 +44,7 @@ public class AlbumsSpinner extends View {
         super(context);
         mListPopupWindow = new ListPopupWindow(context, null, R.attr.listPopupWindowStyle);
         mListPopupWindow.setModal(true);
-        mListPopupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        mListPopupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         mListPopupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         mListPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -111,6 +111,11 @@ public class AlbumsSpinner extends View {
 
             @Override
             public void onClick(View v) {
+                if (mAdapter.getCount() <= MAX_SHOWN_COUNT) {
+                    mListPopupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+                } else {
+                    mListPopupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
                 mListPopupWindow.show();
             }
         });
