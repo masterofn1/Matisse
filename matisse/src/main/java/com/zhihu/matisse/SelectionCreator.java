@@ -32,6 +32,7 @@ import com.zhihu.matisse.internal.entity.CaptureStrategy;
 import com.zhihu.matisse.internal.entity.SelectionSpec;
 import com.zhihu.matisse.listener.OnSelectedListener;
 import com.zhihu.matisse.ui.MatisseActivity;
+import com.zhihu.matisse.internal.ui.SelectedPreviewActivity;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -138,6 +139,17 @@ public final class SelectionCreator {
      */
     public SelectionCreator countable(boolean countable) {
         mSelectionSpec.countable = countable;
+        return this;
+    }
+
+    /**
+     * Whether to allow preview when media item is being selected
+     * @param previewEnable when value is true, media item can be previewed inside
+     *                      {@link SelectedPreviewActivity}
+     * @return {@link SelectionCreator} for fluent API.
+     */
+    public SelectionCreator previewEnabled(boolean previewEnable) {
+        mSelectionSpec.previewEnable = previewEnable;
         return this;
     }
 
